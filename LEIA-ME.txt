@@ -1,0 +1,49 @@
+# A Máquina do Tempo do Áudio — v2.3 Portable
+
+Esta versão foi preparada para gerar um executável Windows portátil, sem exigir
+Python ou instalação de bibliotecas no computador onde o programa será usado.
+
+## O que foi alterado
+
+- Compatibilidade de caminhos com executáveis PyInstaller (`sys._MEIPASS`).
+- Assets incluídos no executável.
+- MP3 tenta primeiro `soundfile`; se necessário, usa `pydub` com o FFmpeg
+  fornecido por `imageio-ffmpeg`.
+- Build em arquivo único: `MaquinaDoTempoAudio.exe`.
+- GitHub Actions compila em uma máquina Windows na nuvem.
+
+## Como compilar sem instalar nada no seu computador
+
+1. Crie um repositório vazio no GitHub.
+2. Envie TODO o conteúdo desta pasta para a raiz do repositório, inclusive a
+   pasta oculta `.github`.
+3. Abra a aba **Actions** do repositório.
+4. Escolha **Compilar Windows Portable**.
+5. Clique em **Run workflow**.
+6. Ao terminar, abra a execução concluída e procure o artefato
+   **MaquinaDoTempoAudio-Windows-Portable**.
+7. O ZIP produzido contém `MaquinaDoTempoAudio.exe`.
+
+O computador da sala de aula não precisa ter Python instalado. Copie o EXE para
+o pendrive e execute-o.
+
+## Observação sobre computadores institucionais
+
+O executável não é assinado digitalmente. Windows Defender, SmartScreen ou
+AppLocker podem exibir um aviso ou bloquear programas não assinados, conforme a
+política do computador. Isso é independente de Python ou do fato de o programa
+estar em um pendrive.
+
+## Assets
+
+A pasta `assets` contém os assets da v2.1 disponíveis no projeto. Eles podem ser
+substituídos posteriormente pelos PNGs definitivos, mantendo exatamente estes
+nomes:
+
+- fonografo.png
+- disco_78rpm.png
+- radio_am.png
+- radio_fm.png
+- cassete.png
+- cd.png
+- digital.png

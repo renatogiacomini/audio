@@ -1,0 +1,9 @@
+numpy
+scipy
+matplotlib
+sounddevice
+soundfile
+pillow
+pydub
+imageio-ffmpeg
+pyinstaller
