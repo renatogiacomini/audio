@@ -1,0 +1,40 @@
+name: Compilar Windows Portable
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Baixar projeto
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependencias
+        shell: pwsh
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Compilar executavel
+        shell: pwsh
+        run: |
+          pyinstaller --clean --noconfirm MaquinaDoTempoAudio.spec
+
+      - name: Criar ZIP portatil
+        shell: pwsh
+        run: |
+          Compress-Archive -Path dist\MaquinaDoTempoAudio.exe -DestinationPath MaquinaDoTempoAudio_Windows_Portable.zip
+
+      - name: Disponibilizar resultado
+        uses: actions/upload-artifact@v4
+        with:
+          name: MaquinaDoTempoAudio-Windows-Portable
+          path: MaquinaDoTempoAudio_Windows_Portable.zip
+          if-no-files-found: error
